@@ -119,9 +119,9 @@ Thanks to Professor Jack Silberman and both TA's Jose and Jingli for supporing o
 <hr>
 
 ## Contacts
-* [Name 1] - [Email] | [LinkedIn URL]
-* [Name 2] - [Email] | [LinkedIn URL]
-* [Name 3] - [Email] | [LinkedIn URL]
-* [Name 4] - [Email] | [LinkedIn URL]
+* Spencer Herberich - [email] 
+* Pelin Kaynak - pkaynak@ucsd.edu
+* Woojin Lee - [email] 
+* Thomas Beauchataud - [email] 
 
 <hr>
