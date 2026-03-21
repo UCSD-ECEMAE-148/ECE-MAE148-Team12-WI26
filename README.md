@@ -34,31 +34,31 @@
 
 ## DonkeyCar
 <div align="center">
-    Front View </div>
+    [Front View] </div>
     <div align="center">
     <img width="669" height="796" alt="Screenshot 2026-03-20 220315" src="https://github.com/user-attachments/assets/64b4d67a-8fc3-4788-9bc3-ea7d757362aa" />    
 </div>
 
 <div align="center">
-    Right View </div>
+    [Right View] </div>
     <div align="center">
     <img width="657" height="682" alt="Screenshot 2026-03-20 220330" src="https://github.com/user-attachments/assets/b3989641-f129-43fc-afd6-c737b09f96ea" />
 </div>
 
 <div align="center">
-    Left View </div>
+    [Left View] </div>
     <div align="center">
     <img width="639" height="706" alt="Screenshot 2026-03-20 220341" src="https://github.com/user-attachments/assets/c365a62e-c6ef-4e9f-9c81-e8bae11cdac6" />
 </div>
 
 <div align="center">
-    Behind View </div>
+    [Behind View] </div>
     <div align="center">
     <img width="608" height="750" alt="Screenshot 2026-03-20 220353" src="https://github.com/user-attachments/assets/6aefa78a-0661-4010-86c7-f4573357e9e6" />
 </div>
 
 <div align="center">
-    Birdeye View </div>
+    [Birdeye View] </div>
     <div align="center">
     <img width="705" height="872" alt="Screenshot 2026-03-20 220406" src="https://github.com/user-attachments/assets/8e9c3b3e-053a-4a84-a408-4e206b6fc14e" />
 </div>
