@@ -16,8 +16,6 @@
     <li><a href="#final-project-videos">Final Project Videos</a></li>
     <li><a href="#software">Software</a></li>
     <li><a href="#hardware">Hardware</a></li>
-    <li><a href="#course-deliverables">Course Deliverables</a></li>
-    <li><a href="#project-reproduction">Project Reproduction</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#contacts">Contacts</a></li>
 </ol>
@@ -70,11 +68,9 @@ Redesigning our Donkeycar with inexpensive components(IMU and cheaper GPS) to lo
 **Click** any of the images below to **reroute to the video**. 
 <div align="center">
      
-#### **[Video Title 1]**
-[<img src="Images/YOUR_IMAGE.png" width="500">](LINK_TO_VIDEO)
+#### **[Complete GPS lap with IMU]**
+[<img src="Images/YOUR_IMAGE.png" width="500">](https://drive.google.com/file/d/1ayvyVb4PYAjlYvAcFlreRHea2IlMc_tX/view?usp=drive_link)
 
-#### **[Video Title 2]**
-[<img src="Images/YOUR_IMAGE.png" width="500">](LINK_TO_VIDEO)
 </div>
 
 <hr>
@@ -94,33 +90,17 @@ __Parts List__
 * [Item 3]
 * ...
 
-### __Mechanical Design Highlight__
-* __[Design Component]__
-<div align="center">
-<img src="Images/YOUR_IMAGE.png" height="350"> 
-</div>
-
-<hr>
-
-## Course Deliverables
-[Provide links to any relevant deliverables or presentations.]
-
-<hr>
-
-## Project Reproduction
-[Outline any steps required to reproduce your project, including necessary configurations and commands.]
-
 <hr>
 
 ## Acknowledgements
-Thanks to Professor Jack Silberman and both TA's Jose and Jingli for supporing our project during the course!
+Thanks to Professor Jack Silberman and both TAs Jose and Jingli for supporing our project during the course!
 
 <hr>
 
 ## Contacts
-* Spencer Herberich - [email] 
+* Spencer Herberich - sherberich@ucsd.edu 
 * Pelin Kaynak - pkaynak@ucsd.edu
-* Woojin Lee - [email] 
-* Thomas Beauchataud - [email] 
+* Woojin Lee - wol022@ucsd.edu 
+* Thomas Beauchataud - thomas.beauchataud@estaca.eu 
 
 <hr>
