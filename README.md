@@ -8,12 +8,13 @@
 ## Table of Contents
 <ol>
     <li><a href="#team-members">Team Members</a></li>
+    <li><a href="#donkeycar">DonkeyCar</a></li>
     <li><a href="#final-project">Final Project</a></li>
     <li><a href="#what-we-promised">What We Promised</a></li>
     <li><a href="#accomplishments">Accomplishments</a></li>
     <li><a href="#challenges">Challenges</a></li>
     <li><a href="#future-work">Future Work</a></li>  
-    <li><a href="#final-project-videos">Final Project Videos</a></li>
+    <li><a href="#final-project-video">Final Project Video</a></li>
     <li><a href="#software">Software</a></li>
     <li><a href="#hardware">Hardware</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -30,11 +31,33 @@
 
 <hr>
 
+## DonkeyCar
+<div align="center">
+    * Front View
+    <img src="Images/YOUR_IMAGE.png" width="600" height="400"> 
+    <div align="center">
+    * Left View
+    <img src="Images/YOUR_IMAGE.png" width="600" height="400">
+    <div align="center">
+    * Right View
+    <img src="Images/YOUR_IMAGE.png" width="600" height="400">
+    <div align="center">
+    * Behind View
+    <img src="Images/YOUR_IMAGE.png" width="600" height="400">
+    <div align="center">
+    * Birdeye View
+    <img src="Images/YOUR_IMAGE.png" width="600" height="400">
+
+</div>
+
+<hr>
+
 ## Final Project
 Redesigning our Donkeycar with inexpensive components(IMU and cheaper GPS) to lower the cost of the robot, but still perform as good as the robot with expensive components. 
 
 <div align="center">
      <img src="Images/YOUR_IMAGE.png" width="600" height="400">
+    
 </div>
 
 <hr>
