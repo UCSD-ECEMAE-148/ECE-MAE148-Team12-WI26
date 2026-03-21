@@ -40,13 +40,13 @@
 </div>
 
 <div align="center">
-    Left View </div>
+    Right View </div>
     <div align="center">
     <img width="657" height="682" alt="Screenshot 2026-03-20 220330" src="https://github.com/user-attachments/assets/b3989641-f129-43fc-afd6-c737b09f96ea" />
 </div>
 
 <div align="center">
-    Right View </div>
+    Left View </div>
     <div align="center">
     <img width="639" height="706" alt="Screenshot 2026-03-20 220341" src="https://github.com/user-attachments/assets/c365a62e-c6ef-4e9f-9c81-e8bae11cdac6" />
 </div>
