@@ -192,7 +192,7 @@ MIT
 <hr>
 
 ## Challenges
-* Struggled a good amount of time to figure out the delay bwteen IMU and Donkeycar environment 
+* Struggled a good amount of time to figure out the delay between IMU and Donkeycar environment 
 
 <hr>
 
