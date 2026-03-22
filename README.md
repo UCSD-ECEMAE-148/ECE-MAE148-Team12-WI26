@@ -1,4 +1,3 @@
-# <div align="center">DonkeyCar Path Following IMU Integration</div>
 ![image](https://xiltrix.com/wp-content/uploads/2018/02/UCSD-Jacobs-School-of-Engineering-XiltriX.jpg)
 ### <div align="center"> ECE/MAE 148 Final Project </div>
 #### <div align="center"> Team 12 - Winter 2026 </div>
@@ -9,15 +8,14 @@
 <ol>
     <li><a href="#team-members">Team Members</a></li>
     <li><a href="#donkeycar">DonkeyCar</a></li>
-    <li><a href="#final-project">Final Project</a></li>
+    <li><a href="#final-project-donkeycar-gpsimu-fusion--bno08x--neo-f10n">Final Project: DonkeyCar GPS/IMU Fusion — BNO08x + NEO-F10N</a></li>
     <li><a href="#what-we-promised">What We Promised</a></li>
     <li><a href="#accomplishments">Accomplishments</a></li>
     <li><a href="#challenges">Challenges</a></li>
     <li><a href="#future-work">Future Work</a></li>  
     <li><a href="#final-project-video">Final Project Video</a></li>
     <li><a href="#autonomous-laps-videos">Autonomous Laps Videos</a></li>
-    <li><a href="#software">Software</a></li>
-    <li><a href="#hardware">Hardware</a></li>
+    <li><a href="#cad-designs-for-donkeycar">CAD Designs for DonkeyCar</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#contacts">Contacts</a></li>
 </ol>
@@ -65,13 +63,116 @@
 
 <hr>
 
-## Final Project
-Redesigning our Donkeycar with inexpensive components(IMU and cheaper GPS) to lower the cost of the robot, but still perform as good as the robot with expensive components. 
+## Final Project: DonkeyCar GPS/IMU Fusion — BNO08x + NEO-F10N
+Fuses a **BNO08x IMU** (50 Hz) with a **SparkFun NEO-F10N GPS** (10 Hz) via a Kalman filter, giving the DonkeyCar path follower smooth 50 Hz position updates instead of freezing between GPS fixes. 
 
-<div align="center">
-     <img src="Images/YOUR_IMAGE.png" width="600" height="400">
-    
-</div>
+## Files
+
+| File | What it is |
+|---|---|
+| `gps_imu_fused_bno08x.py` | Drop-in DonkeyCar part: copy into `donkeycar/parts/` |
+| `set_gps_10hz.py` | One-time GPS receiver configuration script |
+
+---
+
+## Setup
+
+> Assumes DonkeyCar is already installed with a virtual environment at `~/donkey_env`.
+
+### 1. Install dependencies
+
+```bash
+source ~/donkey_env/bin/activate
+pip install adafruit-circuitpython-bno08x pyubx2 pyserial utm
+```
+
+### 2. Copy the fusion part into DonkeyCar
+
+```bash
+cp gps_imu_fused_bno08x.py \
+   ~/donkey_env/lib/python3.11/site-packages/donkeycar/parts/
+```
+
+> Adjust `python3.11` if your environment uses a different Python version.
+
+### 3. Configure the GPS receiver (run once)
+
+This writes 10 Hz multi-GNSS settings (GPS + Galileo + BeiDou) to the receiver's battery-backed RAM. You only need to run this once, settings survive power cycles.
+
+```bash
+python set_gps_10hz.py
+```
+
+Each step should print `[OK]`. A `[??]` means no ACK was received but the setting likely applied, the NMEA sentences printed at the end will confirm it's working.
+
+### 4. Patch `manage.py`
+
+Open `~/projects/mycar/manage.py` and replace the entire `add_gps` function with:
+
+```python
+def add_gps(V, cfg):
+    if cfg.HAVE_GPS:
+        from donkeycar.parts.gps_imu_fused_bno08x import GpsImuFusedBno08x
+        fusion = GpsImuFusedBno08x(
+            gps_port=cfg.GPS_SERIAL,
+            gps_baud=cfg.GPS_SERIAL_BAUDRATE,
+            debug=cfg.GPS_DEBUG,
+        )
+        V.add(fusion, outputs=['pos/x', 'pos/y'], threaded=True)
+        return None
+    return None
+```
+
+### 5. Update `myconfig.py`
+
+Open `~/projects/mycar/myconfig.py` and add/update:
+
+```python
+GPS_DEBUG = True           # set False once confirmed working
+GPS_SERIAL = "/dev/ttyUSB0"
+GPS_SERIAL_BAUDRATE = 38400
+```
+
+### 6. Test
+
+```bash
+cd ~/projects/mycar
+python manage.py drive
+```
+
+With `GPS_DEBUG = True` you should see lines like:
+
+```
+[fusion] pos=(476823.12,3652910.44) vx=0.12 vy=0.03 yaw=14.2deg spd=0.13 gps_seq=42 gps_age=0.08s acc=0.11
+```
+
+Once you see `UTM origin set` in the logs, the filter has locked on and position is being fused. Set `GPS_DEBUG = False` for normal driving.
+
+---
+
+## Hardware
+
+- Raspberry Pi 5
+- [SparkFun NEO-F10N GPS](https://www.sparkfun.com/products/21234) via USB → `/dev/ttyUSB0`
+- [Adafruit BNO08x IMU](https://www.adafruit.com/product/4754) via I2C (SDA/SCL header pins)
+
+---
+
+## How It Works
+
+The Kalman filter maintains a 5-state estimate: `[x, y, vx, vy, yaw]` in a local ENU frame anchored to a UTM origin set at first GPS fix.
+
+- **50 Hz predict step** — BNO08x linear acceleration (rotated to world frame) propagates position and velocity forward
+- **50 Hz yaw update** — BNO08x game rotation vector corrects heading
+- **10 Hz GPS update** — NEO-F10N position fix corrects x/y; GPS course is blended into yaw when speed > 0.8 m/s
+
+Output is absolute UTM coordinates, matching the frame DonkeyCar uses when recording waypoints with the path follower.
+
+---
+
+## License
+
+MIT
 
 <hr>
 
@@ -134,16 +235,10 @@ Redesigning our Donkeycar with inexpensive components(IMU and cheaper GPS) to lo
 
 <hr>
 
-## Software
-### Overall Architecture
-[Briefly describe the software architecture and how it integrates with any existing frameworks.]
-
-<hr>
-
-## Hardware 
+## CAD Designs for DonkeyCar 
 
 __Parts List__
-* [Board]
+* [Main Board]
   ![Project Screenshot](https://cdn.discordapp.com/attachments/1457986642462769226/1484727828967854231/Screenshot_2026-03-20_183535.png?ex=69bf480b&is=69bdf68b&hm=41a86cc5967c6ba73cc0e7ad1f3d259fe6e608047ce8acb773b951c47b01687f&)
 * [Camera Mount]
   ![Project Screenshot](https://cdn.discordapp.com/attachments/1457986642462769226/1484727831480111195/Screenshot_2026-03-20_183759.png?ex=69bf480b&is=69bdf68b&hm=f2ce9c1dcd6c87d6c288559c0b81ea5a0a242da425f56f49902df51ccf88975c&)
